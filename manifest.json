@@ -2,7 +2,7 @@
     "name": "Inspeção Rotineira ARTESP",
     "short_name": "Inspeção ARTESP",
     "description": "PWA para preenchimento de Ficha de Inspeção Rotineira de Obras de Arte Especiais.",
-    "start_url": "/index.html",
+    "start_url": ".",
     "display": "standalone",
     "background_color": "#f8f9fa",
     "theme_color": "#0056b3",
