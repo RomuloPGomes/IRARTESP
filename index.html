@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inspeção Rotineira ARTESP</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="container">
+        <h1>Inspeção Rotineira de OAE</h1>
+
+        <form id="inspectionForm">
+            <fieldset>
+                <legend>A - Localização e Designação</legend>
+                <label for="rodovia">Rodovia:</label>
+                <input type="text" id="rodovia" name="rodovia">
+
+                <label for="obra">Obra:</label>
+                <input type="text" id="obra" name="obra">
+
+                <label for="km">Km:</label>
+                <input type="text" id="km" name="km">
+
+                <label for="sentido">Sentido:</label>
+                <input type="text" id="sentido" name="sentido">
+            </fieldset>
+
+            <fieldset>
+                <legend>B - Histórico das Inspeções</legend>
+                <label for="inspecaoInicial">Inspeção Inicial:</label>
+                <input type="date" id="inspecaoInicial" name="inspecaoInicial">
+
+                <label for="ultimaRotineira">Última Inspeção Rotineira:</label>
+                <input type="date" id="ultimaRotineira" name="ultimaRotineira">
+            </fieldset>
+
+            <fieldset>
+                <legend>D1 - Caracterização Visual do Estado da Estrutura</legend>
+                <label for="tabuleiro">Tabuleiro:</label>
+                <textarea id="tabuleiro" name="tabuleiro"></textarea>
+
+                <label for="juntas">Juntas de Dilatação:</label>
+                <textarea id="juntas" name="juntas"></textarea>
+
+                <label for="apoios">Aparelhos de Apoio:</label>
+                <textarea id="apoios" name="apoios"></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>Fotos da Inspeção</legend>
+                <input type="file" id="cameraInput" accept="image/*" capture="environment">
+                <div id="image-container"></div>
+            </fieldset>
+
+            <button type="submit">Salvar Inspeção</button>
+        </form>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
