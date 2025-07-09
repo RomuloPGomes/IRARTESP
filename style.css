@@ -1,71 +1,39 @@
 :root {
-    --primary-color: #0056b3;
-    --secondary-color: #28a745;
-    --danger-color: #dc3545;
-    --light-gray: #f8f9fa;
-    --medium-gray: #dee2e6;
-    --dark-gray: #343a40;
-    --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    --primary-color: #0056b3; --secondary-color: #28a745; --danger-color: #dc3545; --light-gray: #f8f9fa; --medium-gray: #dee2e6; --dark-gray: #343a40; --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: var(--light-gray);
-    margin: 0;
-    padding: 15px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: var(--light-gray); margin: 0; padding: 15px;
 }
 .container {
-    max-width: 800px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: var(--card-shadow);
+    max-width: 1100px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: var(--card-shadow);
 }
-header {
-    text-align: center; border-bottom: 1px solid var(--medium-gray); padding-bottom: 15px; margin-bottom: 20px;
-}
-header h1 { margin: 0; color: var(--dark-gray); }
-header p { margin: 5px 0 0; color: #555; }
-fieldset {
-    border: 1px solid var(--medium-gray); border-radius: 8px; margin-bottom: 25px; padding: 20px;
-}
-legend {
-    font-weight: bold; color: var(--primary-color); padding: 0 10px; font-size: 1.2em;
-}
-label {
-    display: block; margin: 15px 0 5px; color: #555; font-weight: 600;
-}
-input[type="text"], input[type="date"], select, textarea {
-    width: 100%; padding: 12px; border-radius: 6px; border: 1px solid var(--medium-gray); box-sizing: border-box; font-size: 1em; background-color: #fff;
-}
-.element-group { margin-bottom: 20px; }
-.element-group h2 { font-size: 1.3em; color: var(--dark-gray); margin-bottom: 10px; padding-bottom: 5px; border-bottom: 2px solid var(--medium-gray); }
-.element-section {
-    background-color: #fdfdff; border: 1px solid #e9e9f3; border-radius: 8px; padding: 15px; margin-top: 20px;
-}
-.element-section h3 { margin-top: 0; color: var(--dark-gray); border-bottom: 2px solid var(--primary-color); padding-bottom: 5px; }
-.add-anomaly-btn {
-    background-color: var(--secondary-color); color: white; padding: 10px 15px; border: none; border-radius: 6px; cursor: pointer; font-size: 1em; width: 100%; margin-top: 10px;
-}
-.anomaly-card {
-    background: white; border: 1px solid var(--medium-gray); border-radius: 6px; padding: 15px; margin-top: 15px; position: relative; box-shadow: var(--card-shadow);
-}
-.therapy-text {
-    background-color: #e9ecef; padding: 10px; border-radius: 6px; color: #495057; margin: 5px 0 15px; min-height: 20px;
-}
+header { border-bottom: 2px solid var(--dark-gray); padding-bottom: 15px; margin-bottom: 20px; }
+.header-main { display: flex; align-items: center; gap: 20px; }
+#concessionaria-logo { max-height: 60px; max-width: 150px; object-fit: contain; }
+.header-title h1 { margin: 0; font-size: 1.4em; color: var(--dark-gray); }
+.header-title h2 { margin: 0; font-size: 1.2em; font-weight: normal; color: #444; }
+.config-section { margin-top: 15px; background: var(--light-gray); padding: 10px; border-radius: 6px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.form-col { display: flex; flex-direction: column; gap: 20px; }
+@media (max-width: 850px) { .form-grid { grid-template-columns: 1fr; } }
+fieldset { border: 1px solid var(--medium-gray); border-radius: 8px; padding: 20px; flex-grow: 1; margin: 0; }
+legend { font-weight: bold; color: var(--primary-color); padding: 0 10px; font-size: 1.2em; }
+label { display: block; margin: 15px 0 5px; color: #555; font-weight: 600; }
+input, select, textarea { width: 100%; padding: 12px; border-radius: 6px; border: 1px solid var(--medium-gray); box-sizing: border-box; font-size: 1em; }
+.element-section { background-color: #fdfdff; border: 1px solid #e9e9f3; border-radius: 8px; padding: 15px; margin-top: 20px; }
+.element-section h3 { margin-top: 0; color: var(--dark-gray); border-bottom: 1px solid var(--primary-color); padding-bottom: 5px; }
+.add-anomaly-btn { background-color: var(--secondary-color); color: white; padding: 10px; border: none; border-radius: 6px; cursor: pointer; width: 100%; margin-top: 10px; }
+.anomaly-card { background: white; border: 1px solid var(--medium-gray); border-radius: 6px; padding: 15px; margin-top: 15px; position: relative; }
+.therapy-text { background-color: #e9ecef; padding: 10px; border-radius: 6px; min-height: 20px; }
 .photo-preview img { max-width: 100%; border-radius: 6px; margin: 10px 0; }
-.remove-btn {
-    background-color: var(--danger-color); color: white; border: none; padding: 2px 8px; border-radius: 50%; cursor: pointer; position: absolute; top: 10px; right: 10px; font-size: 1.2em; line-height: 1;
-}
-.action-buttons {
-    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 15px; margin-top: 20px;
-}
-.action-buttons button {
-    flex-grow: 1; padding: 15px; border: none; border-radius: 6px; cursor: pointer; font-size: 1.1em; color: white; min-width: 200px;
-}
+.remove-btn { background-color: var(--danger-color); color: white; border: none; padding: 2px 8px; border-radius: 50%; cursor: pointer; position: absolute; top: 10px; right: 10px; font-size: 1.2em; line-height: 1; }
+.action-buttons { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
+.action-buttons button { flex-grow: 1; padding: 15px; border: none; border-radius: 6px; cursor: pointer; font-size: 1.1em; color: white; min-width: 200px; }
 #export-excel-btn { background-color: #217346; }
 #export-pdf-btn { background-color: #B30B00; }
 .hidden { display: none; }
-#loading {
-    text-align: center; padding: 20px; font-size: 1.2em; color: var(--primary-color); font-weight: bold;
-}
-
-/* ESTILOS PARA O MOLDE DE EXPORTAÇÃO PDF */
+#loading { text-align: center; padding: 20px; font-size: 1.2em; color: var(--primary-color); }
+/* PDF Styles */
 #pdf-export-container { font-family: Arial, sans-serif; color: #000; width: 210mm; background: white; }
 .pdf-page { padding: 15mm; box-sizing: border-box; }
 .pdf-header, .pdf-subheader { display: flex; justify-content: space-between; font-weight: bold; border: 1px solid #000; padding: 5px; margin-bottom: 2px; }
@@ -77,6 +45,8 @@ input[type="text"], input[type="date"], select, textarea {
 .pdf-section p { margin: 4px 0; font-size: 10pt; }
 .pdf-anomaly-item { font-size: 9pt; margin-top: 8px; padding-top: 5px; border-top: 1px dashed #ccc; }
 .pdf-anomaly-item:first-child { border-top: none; margin-top: 0; padding-top: 0; }
-#pdf-photo-annex .photo-item { page-break-inside: avoid; text-align: center; }
-#pdf-photo-annex img { width: 160mm; max-height: 120mm; margin-bottom: 5mm; border: 1px solid #ccc; object-fit: contain; }
-#pdf-photo-annex p { text-align: center; font-style: italic; font-size: 9pt; margin-top: -4mm; margin-bottom: 10mm; }
+.pdf-photo-page { width: 210mm; height: 297mm; padding: 15mm; box-sizing: border-box; page-break-after: always; display: flex; flex-direction: column; }
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10mm; flex-grow: 1; }
+.pdf-photo-item { border: 1px solid #ccc; padding: 2mm; display: flex; flex-direction: column; justify-content: space-between; text-align: center; }
+.pdf-photo-item img { max-width: 100%; max-height: 100mm; object-fit: contain; margin-bottom: 2mm; }
+.pdf-photo-item p { margin: 0; padding: 2mm; background-color: #f4f4f4; font-size: 9pt; font-style: italic; }

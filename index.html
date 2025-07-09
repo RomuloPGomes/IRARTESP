@@ -23,7 +23,7 @@
             <div class="config-section">
                 <label for="concessionaria-select"><strong>Configurar Inspeção:</strong></label>
                 <select id="concessionaria-select">
-                    <option value="default" selected>Selecione a Concessionária...</option>
+                    <option value="default" selected>Selecione...</option>
                     <option value="tiete">Rodovias do Tietê</option>
                     <option value="ecovias">Ecovias</option>
                     <option value="ccr">CCR AutoBAn</option>
@@ -37,26 +37,74 @@
                     <fieldset>
                         <legend>A - Localização e Designação</legend>
                         <label for="rodovia">Rodovia:</label><input type="text" id="rodovia" name="rodovia">
-                        <label for="obra">Tipo de Obra:</label><select id="obra" name="obra"><option value="">Selecione...</option><option value="Ponte">Ponte</option><option value="Viaduto">Viaduto</option><option value="Passagem Superior">Passagem Superior</option><option value="Passagem Inferior">Passagem Inferior</option><option value="Passarela">Passarela de Pedestres</option></select>
+                        <label for="obra">Tipo de Obra:</label><select id="obra" name="obra"><option value="">Selecione...</option><option value="Ponte">Ponte</option><option value="Viaduto">Viaduto</option><option value="Passagem Superior">Passagem Superior</option><option value="Passagem Inferior">Passagem Inferior</option><option value="Passarela">Passarela</option></select>
                         <label for="km">Km:</label><input type="text" id="km" name="km">
                         <label for="sentido">Sentido:</label><select id="sentido" name="sentido"><option value="">Selecione...</option><option value="T">T</option><option value="L">L</option><option value="O">O</option><option value="N">N</option><option value="S">S</option></select>
                     </fieldset>
+
+                    <fieldset>
+                        <legend>B - Histórico das Inspeções</legend>
+                        <label for="ultimaRotineira">Data da Última Inspeção Rotineira:</label>
+                        <input type="date" id="ultimaRotineira" name="ultimaRotineira">
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>C - Descrição das Intervenções</legend>
+                        <label for="reparos">Reparos:</label><textarea id="reparos" name="reparos"></textarea>
+                        <label for="reformas">Reformas:</label><textarea id="reformas" name="reformas"></textarea>
+                        <label for="reforcos">Reforços:</label><textarea id="reforcos" name="reforcos"></textarea>
+                    </fieldset>
+                    
                     <fieldset>
                         <legend>D1 - Estado da Estrutura</legend>
-                        <div class="element-section" data-element="tabuleiro" data-title="Tabuleiro"></div>
-                        <div class="element-section" data-element="juntas" data-title="Juntas de Dilatação"></div>
-                        <div class="element-section" data-element="apoio" data-title="Aparelhos de Apoio"></div>
-                        <div class="element-section" data-element="pilares" data-title="Pilares"></div>
-                        <div class="element-section" data-element="encontros" data-title="Encontros"></div>
+                        <div class="element-section">
+                            <h3>Tabuleiro</h3>
+                            <div id="tabuleiro-anomalias-container"></div>
+                            <button type="button" class="add-anomaly-btn" data-element="tabuleiro" data-container="tabuleiro-anomalias-container" data-title="Tabuleiro">+ Adicionar Anomalia</button>
+                        </div>
+                         <div class="element-section">
+                            <h3>Juntas de Dilatação</h3>
+                            <div id="juntas-anomalias-container"></div>
+                            <button type="button" class="add-anomaly-btn" data-element="juntas" data-container="juntas-anomalias-container" data-title="Juntas de Dilatação">+ Adicionar Anomalia</button>
+                        </div>
+                        <div class="element-section">
+                            <h3>Aparelhos de Apoio</h3>
+                            <div id="apoio-anomalias-container"></div>
+                            <button type="button" class="add-anomaly-btn" data-element="apoio" data-container="apoio-anomalias-container" data-title="Aparelhos de Apoio">+ Adicionar Anomalia</button>
+                        </div>
+                        <div class="element-section">
+                            <h3>Pilares</h3>
+                            <div id="pilares-anomalias-container"></div>
+                            <button type="button" class="add-anomaly-btn" data-element="pilares" data-container="pilares-anomalias-container" data-title="Pilares">+ Adicionar Anomalia</button>
+                        </div>
                     </fieldset>
                 </div>
+
                 <div class="form-col">
-                    <fieldset>
+                     <fieldset>
                         <legend>D2 - Pista sobre a Estrutura</legend>
-                        <div class="element-section" data-element="pavimento" data-title="Pavimento"></div>
-                        <div class="element-section" data-element="drenagem" data-title="Drenagem"></div>
-                        <div class="element-section" data-element="guardaCorpo" data-title="Guarda-Corpo"></div>
+                        <div class="element-section">
+                            <h3>Pavimento</h3>
+                            <div id="pavimento-anomalias-container"></div>
+                            <button type="button" class="add-anomaly-btn" data-element="pavimento" data-container="pavimento-anomalias-container" data-title="Pavimento">+ Adicionar Anomalia</button>
+                        </div>
+                        <div class="element-section">
+                            <h3>Drenagem</h3>
+                            <div id="drenagem-anomalias-container"></div>
+                            <button type="button" class="add-anomaly-btn" data-element="drenagem" data-container="drenagem-anomalias-container" data-title="Drenagem">+ Adicionar Anomalia</button>
+                        </div>
+                         <div class="element-section">
+                            <h3>Guarda-Corpo</h3>
+                            <div id="guardaCorpo-anomalias-container"></div>
+                            <button type="button" class="add-anomaly-btn" data-element="guardaCorpo" data-container="guardaCorpo-anomalias-container" data-title="Guarda-Corpo">+ Adicionar Anomalia</button>
+                        </div>
                     </fieldset>
+
+                    <fieldset>
+                        <legend>D4 - Informações Complementares</legend>
+                        <textarea id="info-complementares" name="info-complementares" rows="5"></textarea>
+                    </fieldset>
+
                     <fieldset>
                         <legend>F - Classificação da Obra</legend>
                         <label for="class-estrutural">Estrutural:</label><select id="class-estrutural" name="class-estrutural"><option value="">Selecione</option><option value="A5">A5</option><option value="A4">A4</option><option value="B2">B2</option><option value="C1">C1</option></select>
@@ -77,18 +125,15 @@
     <template id="anomaly-template">
         <div class="anomaly-card">
             <button type="button" class="remove-btn">×</button>
-            <label>Local da Anomalia:</label>
-            <select class="location-select"><option value="">Selecione o local...</option></select>
-            <label>Anomalia:</label>
-            <select class="anomaly-select"><option value="">Selecione a anomalia...</option></select>
-            <label>Terapia Sugerida:</label>
-            <p class="therapy-text"><i>Selecione uma anomalia.</i></p>
-            <label>Foto da Anomalia:</label>
-            <input type="file" class="photo-input" accept="image/*" capture="environment">
-            <div class="photo-preview"></div>
+            <label>Local:</label><select class="location-select"><option value="">Selecione...</option></select>
+            <label>Anomalia:</label><select class="anomaly-select"><option value="">Selecione...</option></select>
+            <label>Terapia:</label><p class="therapy-text">...</p>
+            <label>Foto:</label><input type="file" class="photo-input" accept="image/*" capture="environment"><div class="photo-preview"></div>
         </div>
     </template>
     
     <div id="pdf-export-container" class="hidden"></div>
+
+    <script src="app.js"></script>
 </body>
 </html>

@@ -11,67 +11,53 @@ document.addEventListener('DOMContentLoaded', () => {
         default: { nome: "Selecione a Concessionária", logo: "logos/default.png"}
     };
     const anomaliasDatabase = {
-        tabuleiro: [{id:"1.1",anomalia:"Manchas de umidade passiva",terapia:"Tratamento superficial do concreto"},{id:"1.2",anomalia:"Manchas de umidade ativa",terapia:"Tratamento superficial do concreto"},{id:"1.3",anomalia:"Eflorescência",terapia:"Tratamento superficial do concreto"},{id:"1.4",anomalia:"Estalactites",terapia:"Tratamento superficial do concreto"},{id:"1.5",anomalia:"Concreto disgregado",terapia:"Tratamento de concreto disgregado, desagregado ou segregado"},{id:"1.17",anomalia:"Armadura exposta",terapia:"Tratamento de concreto disgregado, desagregado ou segregado"},{id:"1.9",anomalia:"Fissuras horizontais",terapia:"Tratamento de fissuras"},{id:"1.10",anomalia:"Fissuras verticais",terapia:"Tratamento de fissuras"},{id:"1.11",anomalia:"Fissuras diagonais",terapia:"Tratamento de fissuras"},{id:"1.13",anomalia:"Trincas",terapia:"Grampeamento de trincas"}],
-        juntas: [{id:"3.11",anomalia:"Acúmulo de detritos na junta",terapia:"Limpeza e desobstrução das juntas de dilatação"},{id:"3.6",anomalia:"Ausência de perfil de vedação",terapia:"Implantação de perfil pré-fabricado para junta de dilatação"},{id:"3.13",anomalia:"Abertura excessiva da junta",terapia:"Recuperação das juntas com troca do perfil elastomérico"},{id: "3.7", anomalia: "Falta de estanqueidade", terapia: "Implantação ou substituição de perfil pré-fabricado para junta de dilatação"},{id: "3.9", anomalia: "Deterioração dos lábios poliméricos", terapia: "Substituição dos lábios poliméricos"}],
-        apoio: [{id:"4.1",anomalia:"Ausência de aparelho de apoio",terapia:"Instalação de aparelhos de apoio"},{id:"4.2",anomalia:"Bloqueio",terapia:"Limpeza e desobstrução de aparelhos de apoio"},{id:"4.4",anomalia:"Acúmulo de detritos",terapia:"Limpeza e desobstrução de aparelhos de apoio"},{id:"4.5",anomalia:"Ruptura",terapia:"Substituição dos aparelhos de apoio"},{id:"4.8",anomalia:"Esmagamento",terapia:"Substituição dos aparelhos de apoio"},{id:"4.9",anomalia:"Deformações laterais excessivas",terapia:"Substituição dos aparelhos de apoio"}],
-        pilares: [{id:"1.17",anomalia:"Armadura exposta",terapia:"Tratamento de concreto disgregado, desagregado ou segregado"},{id:"1.5",anomalia:"Concreto disgregado",terapia:"Tratamento de concreto disgregado, desagregado ou segregado"},{id:"1.9",anomalia:"Fissuras horizontais",terapia:"Tratamento de fissuras"},{id:"1.10",anomalia:"Fissuras verticais",terapia:"Tratamento de fissuras"},{id:"1.11",anomalia:"Fissuras diagonais",terapia:"Tratamento de fissuras"},{id:"1.15",anomalia:"Fora de prumo",terapia:""}],
-        encontros: [{id:"1.1",anomalia:"Manchas de umidade ativa",terapia:"Tratamento superficial do concreto"},{id:"3.1",anomalia:"Existência de erosão",terapia:"Tratamento de taludes com revestimento"},{id:"1.19",anomalia:"Incidência de vegetação",terapia:"Limpeza e remoção da camada vegetal"}, {id:"1.5", anomalia:"Concreto disgregado", terapia:"Tratamento de concreto disgregado, desagregado ou segregado"}],
-        outros: [{id:"2.1", anomalia:"Falha de acabamento na soldagem", terapia:"Limpeza da superfície e serviços de solda"}, {id:"2.2", anomalia:"Corrosão", terapia:"Proteção superficial de estruturas metálicas"}, {id:"2.3", anomalia:"Empeno/Deformação", terapia:"Execução de corte e solda de chapas"}],
-        pavimento: [{id:"3.2",anomalia:"Desgaste superficial, espessura excessiva, ondulações",terapia:"Recuperação do pavimento"},{id:"3.14",anomalia:"Trincas no pavimento",terapia:"Tratamento de fissuras em pavimento flexível"},{id:"3.16",anomalia:"Panela",terapia:"Recuperação de pavimento asfáltico sobre a estrutura"},{id:"3.24",anomalia:'Trincas tipo "couro de jacaré"',terapia:"Recuperação de pavimento asfáltico sobre a estrutura"}],
-        drenagem: [{id:"3.5",anomalia:"Deficiência no sistema de drenagem",terapia:"Recuperação de sarjetas e/ou canaletas"},{id:"2.9",anomalia:"Buzinotes ausentes",terapia:"Instalação de buzinotes"},{id:"2.9",anomalia:"Buzinotes curtos",terapia:"Prolongamento de buzinotes"},{id:"2.9",anomalia:"Buzinotes danificados",terapia:"Recuperação de buzinotes com deficiência de vedação"}],
-        guardaCorpo: [{id:"1.17",anomalia:"Armadura exposta",terapia:"Tratamento de concreto disgregado, desagregado ou segregado"},{id:"2.2",anomalia:"Corrosão",terapia:"Proteção superficial de estruturas metálicas"}],
+        tabuleiro: [{id:"1.1",anomalia:"Manchas de umidade passiva",terapia:"Tratamento superficial do concreto"},{id:"1.2",anomalia:"Manchas de umidade ativa",terapia:"Tratamento superficial do concreto"},{id:"1.5",anomalia:"Concreto disgregado",terapia:"Tratamento de concreto disgregado, desagregado ou segregado"},{id:"1.17",anomalia:"Armadura exposta",terapia:"Tratamento de concreto disgregado, desagregado ou segregado"}],
+        juntas: [{id:"3.11",anomalia:"Acúmulo de detritos na junta",terapia:"Limpeza e desobstrução das juntas de dilatação"},{id:"3.6",anomalia:"Ausência de perfil de vedação",terapia:"Implantação de perfil pré-fabricado para junta de dilatação"}],
+        apoio: [{id:"4.2",anomalia:"Bloqueio",terapia:"Limpeza e desobstrução de aparelhos de apoio"},{id:"4.5",anomalia:"Ruptura",terapia:"Substituição dos aparelhos de apoio"}],
+        pilares: [{id:"1.17",anomalia:"Armadura exposta",terapia:"Tratamento de concreto disgregado, desagregado ou segregado"},{id:"1.9",anomalia:"Fissuras horizontais",terapia:"Tratamento de fissuras"}],
+        pavimento: [{id:"3.2",anomalia:"Desgaste superficial",terapia:"Recuperação do pavimento"},{id:"3.16",anomalia:"Panela",terapia:"Recuperação de pavimento asfáltico"}],
+        drenagem: [{id:"3.5",anomalia:"Deficiência no sistema",terapia:"Recuperação de sarjetas e/ou canaletas"},{id:"2.9",anomalia:"Buzinotes danificados",terapia:"Recuperação de buzinotes"}],
+        guardaCorpo: [{id:"2.2",anomalia:"Corrosão",terapia:"Proteção superficial de estruturas metálicas"}],
     };
     const locationsDatabase = {
-        tabuleiro: ["Alma Externa", "Alma Interna", "Laje", "Laje em Balanço", "Viga Longarina", "Viga Transversina", "Dente Gerber"],
+        tabuleiro: ["Alma Externa", "Alma Interna", "Laje", "Viga Longarina"],
         juntas: ["Junta de dilatação"],
         apoio: ["Aparelho de apoio", "Berço de apoio"],
-        pilares: ["Pilar", "Travessa", "Viga Travessa"],
-        encontros: ["Cortina", "Muro de ala", "Encontro"],
-        pavimento: ["Pista sobre a obra", "Aproximação", "Saída"],
-        drenagem: ["Buzinote", "Sarjeta", "Canaleta", "Dreno"],
+        pilares: ["Pilar", "Travessa"],
+        pavimento: ["Pista sobre a obra", "Aproximação"],
+        drenagem: ["Buzinote", "Sarjeta"],
         guardaCorpo: ["Guarda-corpo"],
         default: ["Geral"]
     };
 
-    const selectConcessionaria = document.getElementById('concessionaria-select');
-    selectConcessionaria.addEventListener('change', (event) => {
+    document.getElementById('concessionaria-select').addEventListener('change', (event) => {
         const concessionaria = concessionariasDB[event.target.value] || concessionariasDB.default;
         document.getElementById('concessionaria-logo').src = concessionaria.logo;
         document.getElementById('header-concessionaria-nome').textContent = concessionaria.nome;
     });
 
-    function setupElementSection(sectionDiv) {
-        const element = sectionDiv.dataset.element;
-        const title = sectionDiv.dataset.title;
-        const h3 = document.createElement('h3');
-        h3.textContent = title;
-        const container = document.createElement('div');
-        container.id = `${element}-anomalias-container`;
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'add-anomaly-btn';
-        button.textContent = `+ Adicionar Anomalia em ${title}`;
-        button.addEventListener('click', () => addAnomalyRow(element, container.id));
-        sectionDiv.appendChild(h3);
-        sectionDiv.appendChild(container);
-        sectionDiv.appendChild(button);
-    }
-    document.querySelectorAll('.element-section').forEach(setupElementSection);
+    document.querySelectorAll('.add-anomaly-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            addAnomalyRow(button.dataset.element, button.dataset.container);
+        });
+    });
 
     function addAnomalyRow(element, containerId) {
         const container = document.getElementById(containerId);
-        const template = document.getElementById('anomaly-template');
-        const anomalyCard = template.content.cloneNode(true);
+        const template = document.getElementById('anomaly-template').content.cloneNode(true);
+        const anomalyCard = template.querySelector('.anomaly-card');
         const locationSelect = anomalyCard.querySelector('.location-select');
         const anomalySelect = anomalyCard.querySelector('.anomaly-select');
         const therapyText = anomalyCard.querySelector('.therapy-text');
-        const removeBtn = anomalyCard.querySelector('.remove-btn');
+        
         (locationsDatabase[element] || locationsDatabase.default).forEach(loc => locationSelect.add(new Option(loc, loc)));
         (anomaliasDatabase[element] || []).forEach(item => anomalySelect.add(new Option(item.anomalia, item.id)));
+
         anomalySelect.addEventListener('change', () => {
             const selectedAnomaly = (anomaliasDatabase[element] || []).find(a => a.id === anomalySelect.value);
             therapyText.textContent = selectedAnomaly ? selectedAnomaly.terapia : '...';
         });
+
         anomalyCard.querySelector('.photo-input').addEventListener('change', (event) => {
             const file = event.target.files[0];
             const photoPreview = event.target.nextElementSibling;
@@ -81,7 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 reader.readAsDataURL(file);
             }
         });
-        removeBtn.addEventListener('click', (e) => e.target.closest('.anomaly-card').remove());
+
+        anomalyCard.querySelector('.remove-btn').addEventListener('click', (e) => e.target.closest('.anomaly-card').remove());
         container.appendChild(anomalyCard);
     }
     
@@ -92,11 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function collectData() {
         const form = document.getElementById('inspectionForm');
         return {
-            concessionaria: concessionariasDB[selectConcessionaria.value] || concessionariasDB.default,
-            cabecalho: { rodovia: form.rodovia.value, obra: form.obra.value, km: form.km.value, sentido: form.sentido.value },
+            concessionaria: concessionariasDB[document.getElementById('concessionaria-select').value] || concessionariasDB.default,
+            cabecalho: { rodovia: form.rodovia.value, obra: form.obra.value, km: form.km.value, sentido: form.sentido.value, ultimaInspecao: form.ultimaRotineira.value },
+            intervencoes: { reparos: form.reparos.value, reformas: form.reformas.value, reforcos: form.reforcos.value },
+            info: form['info-complementares'].value,
             classificacao: { estrutural: form['class-estrutural'].value, funcional: form['class-funcional'].value, durabilidade: form['class-durabilidade'].value },
             anomalias: Array.from(document.querySelectorAll('.anomaly-card')).map(card => ({
-                elemento: card.closest('.element-section').dataset.title,
+                elemento: card.parentElement.previousElementSibling.textContent,
                 local: card.querySelector('.location-select').value,
                 anomalia: card.querySelector('.anomaly-select').selectedOptions[0].text,
                 terapia: card.querySelector('.therapy-text').textContent,
@@ -120,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ["Sentido:", data.cabecalho.sentido],
             [],
             ["D - ANOMALIAS CONSTATADAS"],
-            ["Elemento", "Local", "Anomalia", "Terapia Sugerida", "Legenda da Foto"]
+            ["Elemento", "Local", "Anomalia", "Terapia", "Legenda da Foto"]
         ];
         data.anomalias.forEach(a => sheetData.push([a.elemento, a.local, a.anomalia, a.terapia, a.legenda]));
         const wb = XLSX.utils.book_new();
@@ -154,17 +143,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>`;
         pdfContainer.innerHTML += fichaPageHtml;
-        
         const d1Content = pdfContainer.querySelector('#pdf-d1-content-temp');
         const d2Content = pdfContainer.querySelector('#pdf-d2-content-temp');
         data.anomalias.forEach(a => {
             const item = document.createElement('div');
             item.className = 'pdf-anomaly-item';
             item.innerHTML = `<strong>${a.elemento} (${a.local || 'Geral'}):</strong> ${a.anomalia}`;
-            const target = ["Tabuleiro", "Juntas de Dilatação", "Aparelhos de Apoio", "Pilares", "Encontros"].includes(a.elemento) ? d1Content : d2Content;
+            const target = ["Tabuleiro", "Juntas de Dilatação", "Aparelhos de Apoio", "Pilares"].includes(a.elemento) ? d1Content : d2Content;
             target.appendChild(item);
         });
-
         const photos = data.anomalias.filter(a => a.fotoBase64);
         for (let i = 0; i < photos.length; i += 4) {
             const photoChunk = photos.slice(i, i + 4);
@@ -177,8 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
             photoPage.innerHTML = `<div class="pdf-header"><div>ANEXO FOTOGRÁFICO</div><div>Página ${Math.floor(i/4)+1}</div></div><div class="photo-grid">${gridHtml}</div>`;
             pdfContainer.appendChild(photoPage);
         }
-
-        elementToPrint = pdfContainer;
+        const elementToPrint = pdfContainer;
         elementToPrint.classList.remove('hidden');
         html2canvas(elementToPrint, { scale: 2, useCORS: true }).then(canvas => {
             elementToPrint.classList.add('hidden');

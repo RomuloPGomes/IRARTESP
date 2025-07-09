@@ -1,23 +1,13 @@
 {
     "name": "Inspeção Rotineira ARTESP",
     "short_name": "Inspeção ARTESP",
-    "description": "PWA para preenchimento de Ficha de Inspeção Rotineira de Obras de Arte Especiais.",
+    "description": "PWA para preenchimento de Ficha de Inspeção Rotineira de OAEs.",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#f8f9fa",
     "theme_color": "#0056b3",
     "icons": [
-        {
-            "src": "icon-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "any maskable"
-        },
-        {
-            "src": "icon-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any maskable"
-        }
+        { "src": "icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+        { "src": "icon-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
     ]
 }
