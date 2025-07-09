@@ -6,9 +6,12 @@
     <title>Inspeção Rotineira ARTESP</title>
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div id="app-container" class="container">
         <header>
             <h1>Ficha de Inspeção Rotineira de OAE</h1>
             <p>Concessionária Rodovias do Tietê S/A</p>
@@ -19,95 +22,140 @@
                 <legend>A - Localização e Designação</legend>
                 <label for="rodovia">Rodovia:</label>
                 <input type="text" id="rodovia" name="rodovia" placeholder="Ex: SP-300">
-
                 <label for="obra">Obra (Designação):</label>
-                <input type="text" id="obra" name="obra" placeholder="Ex: Viaduto, Ponte, Passarela">
-
+                <input type="text" id="obra" name="obra" placeholder="Ex: Viaduto, Ponte">
                 <label for="km">Km:</label>
                 <input type="text" id="km" name="km" placeholder="Ex: 150+300">
-
                 <label for="sentido">Sentido:</label>
                 <input type="text" id="sentido" name="sentido" placeholder="Ex: L, O, N, S, T">
             </fieldset>
 
             <fieldset>
                 <legend>B - Histórico das Inspeções</legend>
-                <label for="inspecaoInicial">Data da Inspeção Inicial:</label>
-                <input type="date" id="inspecaoInicial" name="inspecaoInicial">
-
                 <label for="ultimaRotineira">Data da Última Inspeção Rotineira:</label>
                 <input type="date" id="ultimaRotineira" name="ultimaRotineira">
             </fieldset>
 
             <fieldset>
-                <legend>D1 - Caracterização Visual do Estado da Estrutura</legend>
+                <legend>C - Descrição das Intervenções Executadas</legend>
+                <label for="reparos">Reparos:</label>
+                <textarea id="reparos" name="reparos"></textarea>
+                <label for="reformas">Reformas:</label>
+                <textarea id="reformas" name="reformas"></textarea>
+                <label for="reforcos">Reforços:</label>
+                <textarea id="reforcos" name="reforcos"></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>D - Caracterização Visual</legend>
 
                 <div class="element-section">
-                    <h3>Tabuleiro</h3>
+                    <h3>D1 - Estado da Estrutura</h3>
                     <div id="tabuleiro-anomalias-container"></div>
-                    <button type="button" class="add-anomaly-btn" data-element="tabuleiro" data-container="tabuleiro-anomalias-container">
-                        + Adicionar Anomalia no Tabuleiro
-                    </button>
+                    <button type="button" class="add-anomaly-btn" data-element="tabuleiro" data-title="Tabuleiro" data-container="tabuleiro-anomalias-container">+ Adicionar Anomalia no Tabuleiro</button>
+                    
+                    <div id="juntas-anomalias-container" style="margin-top:15px;"></div>
+                    <button type="button" class="add-anomaly-btn" data-element="juntas" data-title="Juntas de Dilatação" data-container="juntas-anomalias-container">+ Adicionar Anomalia nas Juntas</button>
+                    
+                    <div id="apoio-anomalias-container" style="margin-top:15px;"></div>
+                    <button type="button" class="add-anomaly-btn" data-element="apoio" data-title="Aparelhos de Apoio" data-container="apoio-anomalias-container">+ Adicionar Anomalia nos Aparelhos de Apoio</button>
+
+                    <div id="pilares-anomalias-container" style="margin-top:15px;"></div>
+                    <button type="button" class="add-anomaly-btn" data-element="pilares" data-title="Pilares" data-container="pilares-anomalias-container">+ Adicionar Anomalia nos Pilares</button>
+
+                    <div id="encontros-anomalias-container" style="margin-top:15px;"></div>
+                    <button type="button" class="add-anomaly-btn" data-element="encontros" data-title="Encontros" data-container="encontros-anomalias-container">+ Adicionar Anomalia nos Encontros</button>
                 </div>
 
                 <div class="element-section">
-                    <h3>Juntas de Dilatação</h3>
-                    <div id="juntas-anomalias-container"></div>
-                    <button type="button" class="add-anomaly-btn" data-element="juntas" data-container="juntas-anomalias-container">
-                        + Adicionar Anomalia nas Juntas
-                    </button>
+                    <h3>D2 - Pista sobre a Estrutura</h3>
+                    <label for="pavimento">Pavimento:</label>
+                    <textarea id="pavimento" name="pavimento"></textarea>
+                    <label for="acostamento">Acostamento:</label>
+                    <textarea id="acostamento" name="acostamento"></textarea>
+                    <label for="drenagem">Drenagem:</label>
+                    <textarea id="drenagem" name="drenagem"></textarea>
+                    <label for="guardacorpo">Guarda-corpos:</label>
+                    <textarea id="guardacorpo" name="guardacorpo"></textarea>
+                    <label for="barreiras">Barreiras rígidas/Defensas metálicas:</label>
+                    <textarea id="barreiras" name="barreiras"></textarea>
                 </div>
                 
                 <div class="element-section">
-                    <h3>Aparelhos de Apoio</h3>
-                    <div id="apoio-anomalias-container"></div>
-                    <button type="button" class="add-anomaly-btn" data-element="apoio" data-container="apoio-anomalias-container">
-                        + Adicionar Anomalia nos Aparelhos de Apoio
-                    </button>
+                    <h3>D3 - Outros Elementos</h3>
+                    <label for="taludes">Taludes:</label>
+                    <textarea id="taludes" name="taludes"></textarea>
+                    <label for="iluminacao">Iluminação:</label>
+                    <textarea id="iluminacao" name="iluminacao"></textarea>
+                    <label for="sinalizacao">Sinalização:</label>
+                    <textarea id="sinalizacao" name="sinalizacao"></textarea>
                 </div>
 
                 <div class="element-section">
-                    <h3>Pilares</h3>
-                    <div id="pilares-anomalias-container"></div>
-                    <button type="button" class="add-anomaly-btn" data-element="pilares" data-container="pilares-anomalias-container">
-                        + Adicionar Anomalia nos Pilares
-                    </button>
+                    <h3>D4 - Informações Complementares</h3>
+                    <textarea id="info-complementares" name="info-complementares"></textarea>
                 </div>
-                
-                <div class="element-section">
-                    <h3>Encontros</h3>
-                    <div id="encontros-anomalias-container"></div>
-                    <button type="button" class="add-anomaly-btn" data-element="encontros" data-container="encontros-anomalias-container">
-                        + Adicionar Anomalia nos Encontros
-                    </button>
-                </div>
+            </fieldset>
 
+            <fieldset>
+                <legend>F - Atualização da Classificação da Obra</legend>
+                <label for="class-estrutural">Estrutural:</label>
+                <select id="class-estrutural" name="class-estrutural">
+                    <option value="">Selecione</option>
+                    <option value="A5">A5</option>
+                    <option value="A4">A4</option>
+                    <option value="B3">B3</option>
+                    <option value="B2">B2</option>
+                    <option value="C1">C1</option>
+                    <option value="C0">C0</option>
+                </select>
+                <label for="class-funcional">Funcional:</label>
+                <select id="class-funcional" name="class-funcional">
+                    <option value="">Selecione</option>
+                    <option value="A5">A5</option>
+                    <option value="A4">A4</option>
+                    <option value="B3">B3</option>
+                    <option value="B2">B2</option>
+                    <option value="C1">C1</option>
+                    <option value="C0">C0</option>
+                </select>
+                <label for="class-durabilidade">Durabilidade:</label>
+                <select id="class-durabilidade" name="class-durabilidade">
+                    <option value="">Selecione</option>
+                    <option value="A5">A5</option>
+                    <option value="A4">A4</option>
+                    <option value="B3">B3</option>
+                    <option value="B2">B2</option>
+                    <option value="C1">C1</option>
+                    <option value="C0">C0</option>
+                </select>
             </fieldset>
             
-            <button type="submit" class="submit-btn">Salvar e Gerar Relatório</button>
         </form>
+
+        <div class="action-buttons">
+            <button type="button" id="export-excel-btn">Exportar para Excel</button>
+            <button type="button" id="export-pdf-btn">Exportar para PDF</button>
+        </div>
+        <div id="loading" class="hidden">Exportando...</div>
+
     </div>
 
     <template id="anomaly-template">
         <div class="anomaly-card">
+            <h4 class="anomaly-title">Nova Anomalia</h4>
             <label>Anomalia:</label>
             <select class="anomaly-select">
-                <option value="">Selecione a anomalia...</option>
-                </select>
-
+                <option value="">Selecione...</option>
+            </select>
             <label>Terapia Sugerida:</label>
-            <p class="therapy-text"><i>Selecione uma anomalia para ver a terapia.</i></p>
-
+            <p class="therapy-text"><i>Selecione uma anomalia.</i></p>
             <label>Localização Específica:</label>
-            <input type="text" class="location-input" placeholder="Ex: Viga L2, Face Norte, 1.5m do apoio">
-            
+            <input type="text" class="location-input" placeholder="Ex: Viga L2, Face Norte">
             <label>Foto da Anomalia:</label>
             <input type="file" class="photo-input" accept="image/*" capture="environment">
-            
-            <div class="photo-preview">
-                </div>
-            
-            <button type="button" class="remove-btn">Remover</button>
+            <div class="photo-preview"></div>
+            <button type="button" class="remove-btn">Remover Anomalia</button>
         </div>
     </template>
 

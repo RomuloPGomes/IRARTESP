@@ -4,7 +4,7 @@
     "description": "PWA para preenchimento de Ficha de Inspeção Rotineira de Obras de Arte Especiais.",
     "start_url": "/index.html",
     "display": "standalone",
-    "background_color": "#f4f4f4",
+    "background_color": "#f8f9fa",
     "theme_color": "#0056b3",
     "icons": [
         {

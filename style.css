@@ -1,9 +1,11 @@
 :root {
     --primary-color: #0056b3;
-    --light-gray: #f4f4f4;
-    --medium-gray: #ddd;
-    --dark-gray: #333;
-    --card-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    --secondary-color: #28a745;
+    --danger-color: #dc3545;
+    --light-gray: #f8f9fa;
+    --medium-gray: #dee2e6;
+    --dark-gray: #343a40;
+    --card-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 body {
@@ -29,15 +31,8 @@ header {
     margin-bottom: 20px;
 }
 
-header h1 {
-    margin: 0;
-    color: var(--dark-gray);
-}
-
-header p {
-    margin: 5px 0 0;
-    color: #555;
-}
+header h1 { margin: 0; color: var(--dark-gray); }
+header p { margin: 5px 0 0; color: #555; }
 
 fieldset {
     border: 1px solid var(--medium-gray);
@@ -55,26 +50,32 @@ legend {
 
 label {
     display: block;
-    margin-bottom: 5px;
+    margin: 15px 0 5px;
     color: #555;
     font-weight: 600;
 }
 
 input[type="text"],
 input[type="date"],
-select {
+select,
+textarea {
     width: 100%;
     padding: 12px;
-    margin-bottom: 15px;
     border-radius: 6px;
     border: 1px solid var(--medium-gray);
-    box-sizing: border-box; /* Importante para o padding não aumentar a largura */
+    box-sizing: border-box;
     font-size: 1em;
+    background-color: #fff;
+}
+
+textarea {
+    min-height: 80px;
+    resize: vertical;
 }
 
 .element-section {
-    background-color: #f9f9f9;
-    border: 1px solid #e9e9e9;
+    background-color: #fdfdff;
+    border: 1px solid #e9e9f3;
     border-radius: 8px;
     padding: 15px;
     margin-top: 20px;
@@ -88,7 +89,7 @@ select {
 }
 
 .add-anomaly-btn {
-    background-color: #28a745;
+    background-color: var(--secondary-color);
     color: white;
     padding: 10px 15px;
     border: none;
@@ -99,24 +100,19 @@ select {
     margin-top: 10px;
 }
 
-.submit-btn {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1em;
-    width: 100%;
-}
-
 .anomaly-card {
     background: white;
     border: 1px solid var(--medium-gray);
     border-radius: 6px;
     padding: 15px;
     margin-top: 15px;
+    position: relative;
     box-shadow: var(--card-shadow);
+}
+
+.anomaly-card h4 {
+    margin-top: 0;
+    color: var(--primary-color);
 }
 
 .therapy-text {
@@ -124,29 +120,52 @@ select {
     padding: 10px;
     border-radius: 6px;
     color: #495057;
-    margin-top: 0;
+    margin: 5px 0 15px;
+    min-height: 20px;
 }
 
 .photo-preview img {
     max-width: 100%;
     border-radius: 6px;
-    margin-bottom: 10px;
-}
-
-.photo-preview input {
-    width: 100%;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid var(--medium-gray);
-    margin-top: 5px;
+    margin: 10px 0;
 }
 
 .remove-btn {
-    background-color: #dc3545;
+    background-color: var(--danger-color);
     color: white;
     border: none;
     padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 15px;
+    float: right;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.action-buttons button {
+    flex-grow: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: white;
+}
+
+#export-excel-btn { background-color: #217346; }
+#export-pdf-btn { background-color: #B30B00; }
+
+.hidden { display: none; }
+
+#loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2em;
+    color: var(--primary-color);
 }
