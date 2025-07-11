@@ -1,139 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inspeção Rotineira ARTESP</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inspeção Metálica - Ponte Rio-Niterói</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app-container" class="container">
-        <header>
-            <div class="header-main">
-                <img id="concessionaria-logo" src="logos/default.png" alt="Logo da Concessionária">
-                <div class="header-title">
-                    <h1 id="header-concessionaria-nome">Selecione a Concessionária</h1>
-                    <h2>INSPEÇÃO ROTINEIRA DE OBRA DE ARTE ESPECIAL</h2>
-                </div>
-            </div>
-            <div class="config-section">
-                <label for="concessionaria-select"><strong>Configurar Inspeção:</strong></label>
-                <select id="concessionaria-select">
-                    <option value="default" selected>Selecione...</option>
-                    <option value="tiete">Rodovias do Tietê</option>
-                    <option value="ecovias">Ecovias</option>
-                    <option value="ccr">CCR AutoBAn</option>
-                </select>
-            </div>
-        </header>
-
-        <form id="inspectionForm">
-            <div class="form-grid">
-                <div class="form-col">
-                    <fieldset>
-                        <legend>A - Localização e Designação</legend>
-                        <label for="rodovia">Rodovia:</label><input type="text" id="rodovia" name="rodovia">
-                        <label for="obra">Tipo de Obra:</label><select id="obra" name="obra"><option value="">Selecione...</option><option value="Ponte">Ponte</option><option value="Viaduto">Viaduto</option><option value="Passagem Superior">Passagem Superior</option><option value="Passagem Inferior">Passagem Inferior</option><option value="Passarela">Passarela</option></select>
-                        <label for="km">Km:</label><input type="text" id="km" name="km">
-                        <label for="sentido">Sentido:</label><select id="sentido" name="sentido"><option value="">Selecione...</option><option value="T">T</option><option value="L">L</option><option value="O">O</option><option value="N">N</option><option value="S">S</option></select>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>B - Histórico das Inspeções</legend>
-                        <label for="ultimaRotineira">Data da Última Inspeção Rotineira:</label>
-                        <input type="date" id="ultimaRotineira" name="ultimaRotineira">
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>C - Descrição das Intervenções</legend>
-                        <label for="reparos">Reparos:</label><textarea id="reparos" name="reparos"></textarea>
-                        <label for="reformas">Reformas:</label><textarea id="reformas" name="reformas"></textarea>
-                        <label for="reforcos">Reforços:</label><textarea id="reforcos" name="reforcos"></textarea>
-                    </fieldset>
-                    
-                    <fieldset>
-                        <legend>D1 - Estado da Estrutura</legend>
-                        <div class="element-section">
-                            <h3>Tabuleiro</h3>
-                            <div id="tabuleiro-anomalias-container"></div>
-                            <button type="button" class="add-anomaly-btn" data-element="tabuleiro" data-container="tabuleiro-anomalias-container" data-title="Tabuleiro">+ Adicionar Anomalia</button>
-                        </div>
-                         <div class="element-section">
-                            <h3>Juntas de Dilatação</h3>
-                            <div id="juntas-anomalias-container"></div>
-                            <button type="button" class="add-anomaly-btn" data-element="juntas" data-container="juntas-anomalias-container" data-title="Juntas de Dilatação">+ Adicionar Anomalia</button>
-                        </div>
-                        <div class="element-section">
-                            <h3>Aparelhos de Apoio</h3>
-                            <div id="apoio-anomalias-container"></div>
-                            <button type="button" class="add-anomaly-btn" data-element="apoio" data-container="apoio-anomalias-container" data-title="Aparelhos de Apoio">+ Adicionar Anomalia</button>
-                        </div>
-                        <div class="element-section">
-                            <h3>Pilares</h3>
-                            <div id="pilares-anomalias-container"></div>
-                            <button type="button" class="add-anomaly-btn" data-element="pilares" data-container="pilares-anomalias-container" data-title="Pilares">+ Adicionar Anomalia</button>
-                        </div>
-                    </fieldset>
-                </div>
-
-                <div class="form-col">
-                     <fieldset>
-                        <legend>D2 - Pista sobre a Estrutura</legend>
-                        <div class="element-section">
-                            <h3>Pavimento</h3>
-                            <div id="pavimento-anomalias-container"></div>
-                            <button type="button" class="add-anomaly-btn" data-element="pavimento" data-container="pavimento-anomalias-container" data-title="Pavimento">+ Adicionar Anomalia</button>
-                        </div>
-                        <div class="element-section">
-                            <h3>Drenagem</h3>
-                            <div id="drenagem-anomalias-container"></div>
-                            <button type="button" class="add-anomaly-btn" data-element="drenagem" data-container="drenagem-anomalias-container" data-title="Drenagem">+ Adicionar Anomalia</button>
-                        </div>
-                         <div class="element-section">
-                            <h3>Guarda-Corpo</h3>
-                            <div id="guardaCorpo-anomalias-container"></div>
-                            <button type="button" class="add-anomaly-btn" data-element="guardaCorpo" data-container="guardaCorpo-anomalias-container" data-title="Guarda-Corpo">+ Adicionar Anomalia</button>
-                        </div>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>D4 - Informações Complementares</legend>
-                        <textarea id="info-complementares" name="info-complementares" rows="5"></textarea>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>F - Classificação da Obra</legend>
-                        <label for="class-estrutural">Estrutural:</label><select id="class-estrutural" name="class-estrutural"><option value="">Selecione</option><option value="A5">A5</option><option value="A4">A4</option><option value="B2">B2</option><option value="C1">C1</option></select>
-                        <label for="class-funcional">Funcional:</label><select id="class-funcional" name="class-funcional"><option value="">Selecione</option><option value="A5">A5</option><option value="A4">A4</option><option value="B2">B2</option><option value="C1">C1</option></select>
-                        <label for="class-durabilidade">Durabilidade:</label><select id="class-durabilidade" name="class-durabilidade"><option value="">Selecione</option><option value="A5">A5</option><option value="A4">A4</option><option value="B2">B2</option><option value="C1">C1</option></select>
-                    </fieldset>
-                </div>
-            </div>
-        </form>
-
-        <div class="action-buttons">
-            <button type="button" id="export-excel-btn">Exportar para Excel</button>
-            <button type="button" id="export-pdf-btn">Exportar para PDF</button>
-        </div>
-        <div id="loading" class="hidden">Exportando, por favor aguarde...</div>
-    </div>
-
-    <template id="anomaly-template">
-        <div class="anomaly-card">
-            <button type="button" class="remove-btn">×</button>
-            <label>Local:</label><select class="location-select"><option value="">Selecione...</option></select>
-            <label>Anomalia:</label><select class="anomaly-select"><option value="">Selecione...</option></select>
-            <label>Terapia:</label><p class="therapy-text">...</p>
-            <label>Foto:</label><input type="file" class="photo-input" accept="image/*" capture="environment"><div class="photo-preview"></div>
-        </div>
-    </template>
-    
-    <div id="pdf-export-container" class="hidden"></div>
-
-    <script src="app.js"></script>
+  <h1>Inspeção Metálica</h1>
+  <section id="form-section"></section>
+  <section id="filtros"></section>
+  <section id="galeria"></section>
+  <section id="botoes">
+    <button onclick="exportarCSV()">Exportar CSV</button>
+    <button onclick="exportarPDF()">Exportar PDF</button>
+  </section>
+  <script src="script.js"></script>
+  <script src="export-pdf.js"></script>
+  <script src="galeria.js"></script>
+  <script src="banco.js"></script>
+  <script src="associador.js"></script>
 </body>
 </html>
